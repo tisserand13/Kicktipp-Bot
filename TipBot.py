@@ -11,7 +11,11 @@ class TipBot:
     def _initialize_headless_browser(self):
         opts = Options()
         opts.headless = True
-        self.browser = Chrome(options=opts)
+        try:
+            self.browser = Chrome(options=opts)
+        except():
+            self.browser = Chrome(executable_path=os.environ['ChromeWebDriver'], options=opts) 
+
 
     def _authenticate_to_kicktipp(self):
         self.browser.get('https://www.kicktipp.de/djk-labbeck/profil/login')
