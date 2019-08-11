@@ -1,18 +1,20 @@
 --- 
 jobs: 
   - job: "Tip all recent matches and submit"
-    pool: 
+    pool:
+      vmImage: 'vs2017-win2016'
+    strategy: 
+      matrix: 
+        Python37:
+          python.version: '3.7'
       maxParallel: 1
-      strategy: 
-        matrix: 
-          Python37: 
-            python.version: "3.7"
-      vmImage: vs2017-win2016
-    steps: 
-      - inputs: 
-          architecture: x64
+      
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
           versionSpec: $(python.version)
-        task: UsePythonVersion@0
+          architecture: x64
+        
       - script: "pip install selenium && npm install chromedriver"
         displayName: "Install dependencies"
 
