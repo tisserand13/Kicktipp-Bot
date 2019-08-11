@@ -6,17 +6,26 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+jobs:
+ - job: 'Tip all recent matches and submit'
+   pool:
+    vmImage: 'vs2017-win2016'
+    strategy:
+      matrix:
+        Python37:
+          python.version: "3.7"
+    maxParallel: 1
+  
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
+      architecture: 'x64'
+  - script: pip install selenium && npm install chromedriver
+    displayName: 'Install dependencies'
+    
+  - powershell: python3 TipBot.py
+    displayName: 'Run tipping bot.'
  
 schedules:
 - cron: "0 12 * * 4"
