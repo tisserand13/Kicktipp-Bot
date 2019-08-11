@@ -1,7 +1,6 @@
 --- 
 jobs: 
-  - 
-    job: "Tip all recent matches and submit"
+  - job: "Tip all recent matches and submit"
     pool: 
       maxParallel: 1
       strategy: 
@@ -10,17 +9,15 @@ jobs:
             python.version: "3.7"
       vmImage: vs2017-win2016
     steps: 
-      - 
-        inputs: 
+      - inputs: 
           architecture: x64
           versionSpec: $(python.version)
         task: UsePythonVersion@0
-      - 
+      - script: "pip install selenium && npm install chromedriver"
         displayName: "Install dependencies"
-        script: "pip install selenium && npm install chromedriver"
-      - 
+
+      - powershell: "python3 TipBot.py"
         displayName: "Run tipping bot."
-        powershell: "python3 TipBot.py"
 schedules: 
   - 
     always: true
