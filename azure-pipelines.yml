@@ -1,6 +1,6 @@
 --- 
 jobs: 
-  - job: "Tip all recent matches and submit"
+  - job: "Run_bot"
     pool:
       vmImage: 'vs2017-win2016'
     strategy: 
