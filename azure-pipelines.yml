@@ -1,0 +1,32 @@
+--- 
+jobs: 
+  - job: "Run_bot"
+    pool:
+      vmImage: 'vs2017-win2016'
+    strategy: 
+      matrix: 
+        Python37:
+          python.version: '3.7'
+      maxParallel: 1
+      
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: $(python.version)
+          architecture: x64
+        
+      - script: "pip install selenium && npm install chromedriver"
+        displayName: "Install dependencies"
+
+      - powershell: "python TipBot.py"
+        displayName: "Run tipping bot."
+schedules:
+- cron: "0 12 * * 4"
+  displayName: Weekly Thursday build
+  branches:
+    include:
+    - master
+  always: true
+ 
+trigger: 
+  - master
