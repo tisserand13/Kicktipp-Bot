@@ -17,3 +17,11 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+ 
+schedules:
+- cron: "0 12 * * 4"
+  displayName: Weekly Thursday build
+  branches:
+    include:
+    - master
+  always: true
