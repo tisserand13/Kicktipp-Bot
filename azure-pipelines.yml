@@ -1,3 +1,4 @@
+    
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
@@ -16,16 +17,16 @@ jobs:
           python.version: "3.7"
     maxParallel: 1
   
-  steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '$(python.version)'
-      architecture: 'x64'
-  - script: pip install selenium && npm install chromedriver
-    displayName: 'Install dependencies'
+   steps:
+   - task: UsePythonVersion@0
+     inputs:
+       versionSpec: '$(python.version)'
+       architecture: 'x64'
+   - script: pip install selenium && npm install chromedriver
+       displayName: 'Install dependencies'
     
-  - powershell: python3 TipBot.py
-    displayName: 'Run tipping bot.'
+   - powershell: python3 TipBot.py
+       displayName: 'Run tipping bot.'
  
 schedules:
 - cron: "0 12 * * 4"
