@@ -21,12 +21,12 @@ jobs:
       - powershell: "python3 TipBot.py"
         displayName: "Run tipping bot."
 schedules:
-    always: true
-    branches: 
-      include: 
-        - master
-    cron: "0 12 * * 4"
-    displayName: "Weekly Thursday build"
+- cron: "0 12 * * 4"
+  displayName: Weekly Thursday build
+  branches:
+    include:
+    - master
+  always: true
  
 trigger: 
   - master
