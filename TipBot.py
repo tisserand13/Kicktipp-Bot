@@ -1,3 +1,4 @@
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 from Match import Match
@@ -10,11 +11,11 @@ class TipBot:
 
     def _initialize_headless_browser(self):
         opts = Options()
-        opts.headless = True
+        # opts.headless = True
         try:
             self.browser = Chrome(options=opts)
-        except():
-            self.browser = Chrome(executable_path=os.environ['ChromeWebDriver'], options=opts) 
+        except WebDriverException:
+            self.browser = Chrome(executable_path=os.environ['ChromeWebDriver'], options=opts)
 
 
     def _authenticate_to_kicktipp(self):
