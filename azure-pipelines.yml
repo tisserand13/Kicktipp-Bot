@@ -18,9 +18,6 @@ jobs:
       - script: "pip install selenium && npm -g install chromedriver@75.0.0"
         displayName: "Install dependencies"
         
-      - powershell: "echo %ChromeWebDriver%"
-        displayName: "Show chromewebdriver path."
-        
       - powershell: "python TipBot.py"
         displayName: "Run tipping bot."
         env:
