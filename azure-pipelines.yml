@@ -23,6 +23,7 @@ jobs:
         env:
           EMAIL: $(email)
           PASSWORD: $(password)
+          CHROMEDRIVER: $(chromedriver)
 schedules:
 - cron: "0 12 * * 4"
   displayName: Weekly Thursday build
