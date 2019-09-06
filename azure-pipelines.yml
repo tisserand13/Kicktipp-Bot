@@ -27,6 +27,10 @@ jobs:
 schedules:
 - cron: "0 12 * * 4"
   displayName: Weekly Thursday build
+  branches:
+    include:
+    - master
+  always: true
  
 trigger: 
   - master
